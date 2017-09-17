@@ -16,18 +16,17 @@
             <?php
                 if (isset($_POST['getUsuarios'])){
                     //Consumindo meu web service                    
-                    $arr['CHAVE']=$_POST['CHAVE'];                 
-                    $arr['CHAMADA']='GETUSUARIOSDTO'; 
-                    $arr['PARAM'] = $_POST['PARAM']; 
-                    $json = json_encode($arr);                    
+                    $url = 'CHAVE='.$_POST['CHAVE'];                 
+                    $url = $url.'&CHAMADA='.'GETUSUARIOSDTO'; 
+                    $url = $url.'&PARAM=' . $_POST['PARAM']; 
+                                 
 
-                    //echo $json;
-                    $url= "http://www.devjan.esy.es/ws_app/v1/?action=$json";
-                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url;
+                    $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
+                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url2;
                     echo '<br><br>';                 
 
                     try {
-                       $jsonData = file_get_contents($url);
+                       $jsonData = file_get_contents($url2);
                             echo $jsonData;
                     } catch (Exception $e) {
                             // Deal with it.

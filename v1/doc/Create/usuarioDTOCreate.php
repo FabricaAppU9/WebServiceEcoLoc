@@ -7,7 +7,7 @@
     <div
         <p>Este exemplo é para criar  um cadastro</p>
          
-        <form method='POST' action='usuarioDTOCreate.php'>
+        <form method='post' action='usuarioDTOCreate.php'>
             <label>Chave de acesso: </label>
             <input type="text" name='CHAVE' value='12345'>
             <label> Nome: </label>
@@ -23,20 +23,19 @@
         <?php
             if (isset($_POST['btnGravar'])){
                 //Consumindo meu web service                    
-                $arr['CHAVE']=$_POST['CHAVE'];                 
-                $arr['CHAMADA']='CRIARUSUARIODTO'; 
-                $arr["NOME"] = $_POST["NOME"]; 
-                $arr['LOGIN'] = $_POST['LOGIN'];                
-                $arr['SENHA'] = $_POST['SENHA'];                
-                $json = json_encode($arr);                    
-                $json= str_replace(' ','+',$json);
+                $url = "CHAVE=" . $_POST['CHAVE'];                 
+                $url = $url . "&CHAMADA=". "CRIARUSUARIODTO"; 
+                $url = $url . "&NOME=" . $_POST["NOME"]; 
+                $url = $url . "&LOGIN=". $_POST["LOGIN"];                
+                $url = $url . "&SENHA=". $_POST["SENHA"];                
                
-                $url= "http://devjan.esy.es/ws_app/v1/?action=$json";
-                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url;
+                
+                $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url2;
                 echo '<br><br>';                 
                 
                 try {
-                   $jsonData = file_get_contents($url);
+                   $jsonData = file_get_contents($url2);
                      echo $jsonData;
                 } catch (Exception $e) {
                     // Deal with it.

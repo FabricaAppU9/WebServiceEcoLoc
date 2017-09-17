@@ -23,8 +23,8 @@
                
                     //Consumindo meu web service
                     
-                    $arr['CHAVE']=$_POST['CHAVE'];                 
-                    $arr['CHAMADA']=$_POST['CRIARPONTO'];                 
+                    $url = '&CHAVE' + $_POST['CHAVE'];                 
+                    $url =  $url + '&CHAMADA' + $_POST['CRIARPONTO'];                 
                     $arr['DESCRICAO']= 'DESCRICAO';                   
                     $arr['LATITUDE']= 'LATITUDE';                   
                     $arr['LONGETUDE']= 'LONGETUDE';                   

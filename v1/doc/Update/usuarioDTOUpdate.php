@@ -14,11 +14,11 @@
             <label>Chave de acesso: </label>
             <input type="text" name='CHAVE' value='12345'>
             <label> Nome: </label>
-            <input type="text" name='NOMEUSUARIO' value='' placeholder="">
+            <input type="text" name='NOME' value='' placeholder="">
              <label>Login: </label>
-            <input type="text" name='LOGINUSUARIO' value='' placeholder="">
+            <input type="text" name='LOGIN' value='' placeholder="">
             <label>Senha: </label>
-            <input type="text" name='SENHAUSUARIO' value='' placeholder="">
+            <input type="text" name='SENHA' value='' placeholder="">
             <label>ID: </label>
             <input type="text" name='IDUSUARIO' value='' placeholder="">
             <input type='submit' name='updateUsuario' value='Atualizar Usuarios'></>
@@ -28,21 +28,20 @@
         <?php
             if (isset($_POST['updateUsuario'])){
                 //Consumindo meu web service                    
-                $arr['CHAVE']=$_POST['CHAVE'];                 
-                $arr['CHAMADA']='UPDATEUSUARIODTO'; 
-                $arr['NOMEUSUARIO'] = $_POST['NOMEUSUARIO']; 
-                $arr['LOGINUSUARIO'] = $_POST['LOGINUSUARIO']; 
-                $arr['SENHAUSUARIO'] = $_POST['SENHAUSUARIO']; 
-                $arr['IDUSUARIO'] = $_POST['IDUSUARIO']; 
-                $json = json_encode($arr);                    
-                $json= str_replace(' ','+',$json);
+                $url = "CHAVE=" . $_POST['CHAVE'];                 
+                $url = $url . "&CHAMADA=". "UPDATEUSUARIODTO"; 
+                $url = $url . "&NOME=" . $_POST["NOME"]; 
+                $url = $url . "&LOGIN=". $_POST["LOGIN"];                
+                $url = $url . "&SENHA=". $_POST["SENHA"];  
+                $url = $url .'&IDUSUARIO=' . $_POST['IDUSUARIO']; 
+                
                 //echo $json;
-                $url= "http://www.devjan.esy.es/ws_app/v1/?action=$json";
-                echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+                $url2= "http://www.devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                 echo '<br><br>';                 
                 
                 try {
-                   $jsonData = file_get_contents($url);
+                   $jsonData = file_get_contents($url2);
                      echo $jsonData;
                 } catch (Exception $e) {
                     // Deal with it.
