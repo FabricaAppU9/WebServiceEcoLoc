@@ -26,17 +26,14 @@
                 $url = $url . "&DESCRICAO=" . $_POST["DESCRICAO"]; 
                 $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
-
-                $json = json_encode($arr);                    
-
-                //echo $json;
-                $url= "http://devjan.esy.es/ws_app/v1/ponto.php?action=$json";
+            
+                $url2= "http://devjan.esy.es/ws_app/v1/ponto.php?".$url;
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
-                echo $url;
+                echo $url2;
                 echo '<br><br>';                 
 
                 try {
-                   $jsonData = file_get_contents($url);
+                   $jsonData = file_get_contents($url2);
                             echo $jsonData;
                 } catch (Exception $e) {
                     // Deal with it.

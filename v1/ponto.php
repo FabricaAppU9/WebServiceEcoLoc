@@ -5,20 +5,20 @@ if (isset($_GET['CHAVE'])){
        if ($_GET['CHAMADA']=='CRIARPONTO'){
             include_once './class/Pontos.class.php';
                 $ponto = new pontos(); 
-                $ponto->setDescricao($_POST[$CALLDecode->DESCICAO]);
-                $ponto->setLatitude($_POST[$CALLDecode->LATITUDE]);
-                $ponto->setLongitude($_POST[$CALLDecode->LONGITUDE]);
+                $ponto->setDescricao($_GET['DESCRICAO']);
+                $ponto->setLatitude($_GET['LATITUDE']);
+                $ponto->setLongitude($_GET['LONGETUDE']);
                 if ($ponto->salvar()){
-                    echo '{"RETORNO":"SUCESSO", "CODIGO":"'.$ponto->getNovoCodigo().'"}';
+                    echo '{"RETORNO":"SUCESSO", "CODIGO":"'.$ponto->getIDPonto().'"}';
                 }else{
-                    echo '{"RETORNO":"N�O CADASTADO"}';
+                    echo '{"RETORNO":"NÃO CADASTADO"}';
                 }           
        }elseif ($_GET['CHAMADA']=='UPDATEPONTO') {
             include_once './class/Pontos.class.php';
             $ponto = new pontos($_GET['IDUSUARIO']); 
-            $ponto->setDescricao($_POST[$CALLDecode->DESCICAO]);
-            $ponto->setLatitude($_POST[$CALLDecode->LATITUDE]);
-            $ponto->setLongitude($_POST[$CALLDecode->LONGITUDE]);
+            $ponto->setDescricao($_GET['DESCICAO']);
+            $ponto->setLatitude($_GET['LATITUDE']);
+            $ponto->setLongitude($_GET['LONGITUDE']);
             if ($ponto->salvar())            
                 echo '{"RETORNO":"ATUALIZADO COM SUCESSO"}';
             else

@@ -7,21 +7,8 @@ class Pontos {
     private $latitude;
     private $longitude;
     private $param;
-                function setDescricao($descricao) {
-        $this->descricao = $descricao;
-    }
-
-    function setLatitude($latitude) {
-        $this->latitude = $latitude;
-    }
-
-    function setLongitude($longitude) {
-        $this->longitude = $longitude;
-    }
-
-    public function Salvar(){
-        return true;
-    }
+    private $SQL;
+    
     public function __construct($ID = "") {
         $this->cnn = new conexao();
 
@@ -40,6 +27,18 @@ class Pontos {
         }else{
             $this->id= '-1';
         }
+    }
+    
+    function setDescricao($descricao) {
+        $this->descricao = $descricao;
+    }
+
+    function setLatitude($latitude) {
+        $this->latitude = $latitude;
+    }
+
+    function setLongitude($longitude) {
+        $this->longitude = $longitude;
     }
     public function getPontos() {
          $in='';
@@ -71,20 +70,20 @@ class Pontos {
     
     public function salvar() {
         if ($this->id == '-1'){           
-            $this->SQL = "INSERT INTO pontos(id,descricao,latitude,longitude) VALUES('-1','$this->descricao','$this->longitude','$this->latitude')";
-              echo $this->SQL;
+            $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude) VALUES('-1','$this->descricao','$this->latitude','$this->longitude')";
+            //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();            
         }else{
             $this->SQL = "UPDATE  pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude' WHERE ID='$this->id'";
-            echo $this->SQL;
+            //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
         }        
             return $result->rowCount();
     }
     public function getIDPonto(){
-        $result = $this->cnn->Conexao()->prepare("SELECT ID FROM pontos  ORDER BY id DESC LIMIT 1");
+        $result = $this->cnn->Conexao()->prepare("SELECT ID FROM Pontos  ORDER BY id DESC LIMIT 1");
 	$result->execute();		 
         //resut set alimentado para retornar o json
         while($row = $result->fetch(PDO::FETCH_OBJ)){
