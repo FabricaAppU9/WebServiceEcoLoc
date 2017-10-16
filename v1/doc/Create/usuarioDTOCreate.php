@@ -31,7 +31,8 @@
                
                 
                 $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
-                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url2;
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
+                echo $url2;
                 echo '<br><br>';                 
                 
                 try {

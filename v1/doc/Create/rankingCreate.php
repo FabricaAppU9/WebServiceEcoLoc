@@ -20,19 +20,19 @@
 
             if (isset($_POST['getPontuacao'])){
                
-                //Consumindo meu web service
-                    
-                $arr['CHAVE']=$_POST['CHAVE'];                 
-                $arr['CHAMADA']= 'CRIARRANKING'; 
-		$arr['IDUSUARIO']= 'IDUSUARIO';
-		$arr['PONTUACAO']= 'PONTUACAO';
-		
+                //Consumindo meu web service    
+		$url = "CHAVE=" . $_POST['CHAVE'];                 
+                $url = $url . "&CHAMADA=". "CRIARRANKING"; 
+                $url = $url . "&IDUSUARIO=" . $_POST["IDUSUARIO"]; 
+                $url = $url . "&PONTUACAO=". $_POST["PONTUACAO"];               
+           
                 $json = json_encode($arr);
                     
                     
                 //echo $json;
-                $url= "http://devjan.ddns.net:1234/ws_app/v1/?action=$json";
-                echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+                $url= "http://devjan.esy.es/ws_app/v1/ranking.php?action=$json";
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
+                echo $url;
                 echo '<br><br>';                 
 
                 try {

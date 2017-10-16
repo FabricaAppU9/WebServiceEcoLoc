@@ -34,12 +34,17 @@ if (isset($_GET['CHAVE'])){
                 $usuarioDTO->setParam($_GET['PARAM']);    
             echo $_GET['PARAM'];
             echo $usuarioDTO->getusuariosDTO();
+       }elseif ($_GET['CHAMADA']=='DELETAALUNO') {
+           include_once './class/usuariosDTO.class.php';
+           $usuarioDTO = new usuariosDTO();
+          if ($usuarioDTO->deletarUsuario($_GET['CODALUNO']) >=1)
+              echo '{"RETORNO":"DELETADO COM SUCESSO"}';
+            else
+              echo '{"RETORNO":"NãO DELETADO"}';
+          
        }else{
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';   
        }
-        
-        
-        
     } else {
         echo '{"RETORNO":"CHAVE DE ACESSO INVALIDO"}';
     }

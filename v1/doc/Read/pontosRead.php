@@ -1,5 +1,5 @@
 <html lang="PT-BR">
-	<head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
@@ -25,7 +25,7 @@
 
 
                     //echo $json;
-                    $url= "http://www.devjan.esy.es/ws/v1/?action=$json";
+                    $url= "http://www.devjan.esy.es/ws_app/v1/ponto.php?action=$json";
                     echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
                     echo '<br><br>';                 
 

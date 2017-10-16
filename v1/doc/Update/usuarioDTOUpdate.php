@@ -1,6 +1,6 @@
 <html lang="PT-BR">
     <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
     
@@ -50,8 +50,6 @@
             }
         ?>
     </div>
-    
-    
     <a href='../index.php'>Principal</a>   
     </body>
 </html>

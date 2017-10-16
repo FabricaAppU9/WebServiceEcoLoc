@@ -1,15 +1,14 @@
 <html lang="PT-BR">
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    </head>
-	
+    </head>	
     <body>    
         <div
             <p>Este exemplo é para deletar um cadastro por vez, 
                     este serviço apagará apenas um por vez,
                     caso não passe o último paramentro não apagará.
             </p>
-            <form method='POST' action='alunoDelete.php'>
+            <form method='POST' action='usuarioDTODelete.php'>
                 <label>Chave de acesso: </label>
                 <input type="text" name='CHAVE' value='12345'>
                 <input type="text" name='CODALUNO' value='' placeholder="">
@@ -19,19 +18,20 @@
         <div style="border: 1px solid black;height: 300px">
             <?php
                 if (isset($_POST['deletaAlunos'])){
-                    //Consumindo meu web service                    
-                    $arr['CHAVE']=$_POST['CHAVE'];   
-                    $arr['CHAMADA']='DELETAALUNO'; 
-                    $arr['CODALUNO'] = $_POST['CODALUNO']; 
-                    $json = json_encode($arr);                    
+                    //Consumindo meu web service      
+                    $url = "CHAVE=" . $_POST['CHAVE'];                 
+                    $url = $url . "&CHAMADA=". "DELETAALUNO"; 
+                    $url = $url . "&CODALUNO=" . $_POST["CODALUNO"]; 
+                  
+                                  
 
                     //echo $json;
-                    $url= "http://www.devjan.esy.es/ws/v1/?action=$json";
-                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+                    $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".$url;
+                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                     echo '<br><br>';                 
 
                     try {
-                       $jsonData = file_get_contents($url);
+                       $jsonData = file_get_contents($url2);
                              echo $jsonData;
                     } catch (Exception $e) {
                             // Deal with it.

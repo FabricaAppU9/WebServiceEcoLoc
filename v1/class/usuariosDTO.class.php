@@ -11,25 +11,25 @@ class usuariosDTO {
     private $SQL = "";
     
     public function __construct($ID = "") {
-    $this->cnn = new conexao();
+        $this->cnn = new conexao();
 
-    $this->SQL = "SELECT * FROM UsuarioDTO WHERE id = ".$ID."";
-   // echo $this->SQL;
-    $result = $this->cnn->Conexao()->prepare($this->SQL);
-    $result->execute();
-    if($result->rowCount()>=1){
-        $this->id= $ID;
-       /* while ($row =$result->fetch(PDO::FETCH_OBJ)){
-            $this->login = $row->lOGIN;
-            $this->senha = $row->SENHA;
-            $this->nome = $row->NOME;
-            $this->id= $row-ID;
-        }*/
-    }else{
-        $this->id= '-1';
+        $this->SQL = "SELECT * FROM UsuarioDTO WHERE id = ".$ID."";
+       // echo $this->SQL;
+        $result = $this->cnn->Conexao()->prepare($this->SQL);
+        $result->execute();
+        if($result->rowCount()>=1){
+            $this->id= $ID;
+           /* while ($row =$result->fetch(PDO::FETCH_OBJ)){
+                $this->login = $row->lOGIN;
+                $this->senha = $row->SENHA;
+                $this->nome = $row->NOME;
+                $this->id= $row-ID;
+            }*/
+        }else{
+            $this->id= '-1';
+        }
     }
-
-    }
+    
     function setLogin($login) {
         $this->login = $login;
     }
@@ -71,12 +71,12 @@ class usuariosDTO {
     public function salvar() {
         if ($this->id == '-1'){           
             $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha) VALUES('-1','$this->nome','$this->login','$this->senha')";
-              echo $this->SQL;
+            //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();            
         }else{
             $this->SQL = "UPDATE  UsuarioDTO SET NOME = '$this->nome', SENHA='$this->senha', LOGIN='$this->login' WHERE ID='$this->id'";
-            echo $this->SQL;
+            //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
         }        
@@ -94,7 +94,7 @@ class usuariosDTO {
     }
 
     public function deletarUsuario($idUsuario) {
-        $result= $this->cnn->Conexao()->prepare("DELETE FROM UsuarioDTO WHERE id = '".id."'");
+        $result= $this->cnn->Conexao()->prepare("DELETE FROM UsuarioDTO WHERE id = ".$idUsuario);
         $result->execute();
         if ($result->rowCount()>0)
             return true;

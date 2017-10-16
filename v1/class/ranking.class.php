@@ -7,10 +7,27 @@ class ranking {
     private $param;
     private $SQL;
     private $cnn;
-    public function setparam(){
-        
-    }
+   
     
+    public function __construct($ID = "") {
+        $this->cnn = new conexao();
+
+        $this->SQL = "SELECT * FROM ranking WHERE id = ".$ID."";
+       // echo $this->SQL;
+        $result = $this->cnn->Conexao()->prepare($this->SQL);
+        $result->execute();
+        if($result->rowCount()>=1){
+            $this->id= $ID;
+           /* while ($row =$result->fetch(PDO::FETCH_OBJ)){
+                $this->login = $row->lOGIN;
+                $this->senha = $row->SENHA;
+                $this->nome = $row->NOME;
+                $this->id= $row-ID;
+            }*/
+        }else{
+            $this->id= '-1';
+        }
+    }
    
     public function getRanking() {
         $cnn = new conexao();
@@ -28,15 +45,13 @@ class ranking {
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             if ($result->execute()>0){
                 return true;
-            }else{
-                return false;
-            }
-        }
-        
+            }else
+                return false;            
+        }        
     }
 
-	private function getPontuacao() {
-        $result= $this->cnn->Conexao()->prepare("SELECT * FROM cursos ORDER BY ranking DESC LIMIT 1");
+    private function getPontuacao() {
+        $result= $this->cnn->Conexao()->prepare("SELECT * FROM ranking ORDER BY ranking DESC LIMIT 1");
 	$result->execute();
 		 
         //resut set alimentado para retornar o json
@@ -46,6 +61,6 @@ class ranking {
        // $this->$idUsuario = 'C'.str_pad((int)substr($idUsuario->CODCURSO,1)+1, 4, '0', STR_PAD_LEFT);        
     }
     public function getNovoCodigo(){
-    return $this->codCurso;
+        return $this->codCurso;
     }
 }

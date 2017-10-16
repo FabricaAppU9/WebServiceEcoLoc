@@ -19,32 +19,31 @@
     </div>
     <div style="border: 1px solid black;min-height: 300px">
         <?php
-                   if (isset($_POST['btnSalvar'])){
-               
-                    //Consumindo meu web service
-                    
-                    $url = '&CHAVE' + $_POST['CHAVE'];                 
-                    $url =  $url + '&CHAMADA' + $_POST['CRIARPONTO'];                 
-                    $arr['DESCRICAO']= 'DESCRICAO';                   
-                    $arr['LATITUDE']= 'LATITUDE';                   
-                    $arr['LONGETUDE']= 'LONGETUDE';                   
-                                
-                    $json = json_encode($arr);                    
-                    
-                    //echo $json;
-                    $url= "http://devjan.ddns.net:1234/ws_app/v1/?action=$json";
-                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
-                    echo '<br><br>';                 
-                   
-                    try {
-                       $jsonData = file_get_contents($url);
-                                echo $jsonData;
-                    } catch (Exception $e) {
-                        // Deal with it.
-                        echo "Error: " , $e->getMessage();
-                    }                
-            }
-            ?>
+            if (isset($_POST['btnSalvar'])){
+                //Consumindo meu web service
+                $url = "CHAVE=" . $_POST['CHAVE'];                 
+                $url = $url . "&CHAMADA=". "CRIARPONTO"; 
+                $url = $url . "&DESCRICAO=" . $_POST["DESCRICAO"]; 
+                $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
+                $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
+
+                $json = json_encode($arr);                    
+
+                //echo $json;
+                $url= "http://devjan.esy.es/ws_app/v1/ponto.php?action=$json";
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
+                echo $url;
+                echo '<br><br>';                 
+
+                try {
+                   $jsonData = file_get_contents($url);
+                            echo $jsonData;
+                } catch (Exception $e) {
+                    // Deal with it.
+                    echo "Error: " , $e->getMessage();
+                }                
+           }
+        ?>
     </div>
     <a href='../index.php'>Principal</a> 
 	</body>			
