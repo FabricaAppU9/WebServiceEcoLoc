@@ -32,7 +32,7 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO = new usuariosDTO();
             if(isset($_GET['PARAM']))
                 $usuarioDTO->setParam($_GET['PARAM']);    
-            echo $_GET['PARAM'];
+            //echo $_GET['PARAM'];
             echo $usuarioDTO->getusuariosDTO();
        }elseif ($_GET['CHAMADA']=='DELETAALUNO') {
            include_once './class/usuariosDTO.class.php';

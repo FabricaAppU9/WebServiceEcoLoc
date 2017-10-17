@@ -20,12 +20,10 @@
             //Consumindo meu web service
 
             $arr['CHAVE']=$_POST['CHAVE'];                 
-            $arr['CHAMADA']= 'GETPERIODOS';                   
-            $json = json_encode($arr);
-
+            $arr['CHAMADA']= 'GETPERIODOS'; 
 
             //echo $json;
-            $url= "http://devjan.ddns.net:1234/ws_app/v1/ranking.php?action=$json";
+            $url= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
             echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
             echo '<br><br>';                 
 

@@ -4,7 +4,7 @@ if (isset($_GET['CHAVE'])){
     if ($_GET['CHAVE'] == '12345'){
        if ($_GET['CHAMADA']=='CRIARPONTO'){
             include_once './class/Pontos.class.php';
-                $ponto = new pontos(); 
+                $ponto = new Pontos(); 
                 $ponto->setDescricao($_GET['DESCRICAO']);
                 $ponto->setLatitude($_GET['LATITUDE']);
                 $ponto->setLongitude($_GET['LONGETUDE']);
@@ -15,8 +15,8 @@ if (isset($_GET['CHAVE'])){
                 }           
        }elseif ($_GET['CHAMADA']=='UPDATEPONTO') {
             include_once './class/Pontos.class.php';
-            $ponto = new pontos($_GET['IDUSUARIO']); 
-            $ponto->setDescricao($_GET['DESCICAO']);
+            $ponto = new Pontos($_GET['IDPONTO']); 
+            $ponto->setDescricao($_GET['DESCRICAO']);
             $ponto->setLatitude($_GET['LATITUDE']);
             $ponto->setLongitude($_GET['LONGITUDE']);
             if ($ponto->salvar())            
@@ -26,7 +26,9 @@ if (isset($_GET['CHAVE'])){
             
        }elseif ($_GET['CHAMADA']=='GETPONTOS') {             
           include_once './class/Pontos.class.php';
-          $ponto = new $pontos();            
+          $ponto = new Pontos();  
+          if(isset($_GET['PARAM']))
+             $ponto->setParam($_GET['PARAM']);          
           echo $ponto->getPontos();              
        }else
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';         

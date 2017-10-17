@@ -12,8 +12,8 @@ class Pontos {
     public function __construct($ID = "") {
         $this->cnn = new conexao();
 
-        $this->SQL = "SELECT * FROM pontos WHERE id = ".$ID."";
-       // echo $this->SQL;
+        $this->SQL = "SELECT * FROM Pontos WHERE id = ".$ID;
+        //echo $this->SQL;
         $result = $this->cnn->Conexao()->prepare($this->SQL);
         $result->execute();
         if($result->rowCount()>=1){
@@ -53,7 +53,7 @@ class Pontos {
             $where='';        
          
         $cnn = new conexao();
-        $result= $cnn->Conexao()->query("SELECT * FROM pontos".$where);
+        $result= $cnn->Conexao()->query("SELECT * FROM Pontos ".$where);
         //resut set alimentado para retornar o json
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $tr[] = $row;
@@ -75,7 +75,7 @@ class Pontos {
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();            
         }else{
-            $this->SQL = "UPDATE  pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude' WHERE ID='$this->id'";
+            $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude' WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
@@ -93,7 +93,7 @@ class Pontos {
     }
 
     public function deletarPonto($idUsuario) {
-        $result= $this->cnn->Conexao()->prepare("DELETE FROM pontos WHERE id = '".id."'");
+        $result= $this->cnn->Conexao()->prepare("DELETE FROM Pontos WHERE id = '".id."'");
         $result->execute();
         if ($result->rowCount()>0)
             return true;

@@ -4,34 +4,33 @@
     </head>
     <body>
         <div>
-            <form method='POST' action='cursosRead.php'>
+            <form method='POST' action='pontosRead.php'>
                 <label>Chave de acesso</label>
                 <input type="text" name='CHAVE' value='12345'>				
                 <label>informe um ID: </label>
                 <input type="text" name='PARAM' value='' placeholder="A0001,A0002">
-                <input type='submit' name='getAlunos' value='Lista de alunos'></>
+                <input type='submit' name='getPontos' value='Listar pontos'></>
             </form>
         </div>
         <div style="border: 1px solid black;height: 300px">
             <?php
-                if (isset($_POST['getAlunos'])){
+                if (isset($_POST['getPontos'])){
 
                     //Consumindo meu web service
 
-                    $arr['CHAVE']=$_POST['CHAVE'];                 
-                    $arr['CHAMADA'] ='GETCURSOS';                   
-                    $arr['PARAM']=$_POST['PARAM'];                 
-                    $json = json_encode($arr);
-
+                
+                    $url = 'CHAVE='.$_POST['CHAVE'];                 
+                    $url = $url.'&CHAMADA='.'GETPONTOS'; 
+                    $url = $url.'&PARAM=' . $_POST['PARAM']; 
 
                     //echo $json;
-                    $url= "http://www.devjan.esy.es/ws_app/v1/ponto.php?action=$json";
-                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+                    $url2= "http://devjan.esy.es/ws_app/v1/ponto.php?$url";
+                    echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                     echo '<br><br>';                 
 
                     try {
-                       $jsonData = file_get_contents($url);
-                                            echo $jsonData;
+                       $jsonData = file_get_contents($url2);
+                       echo $jsonData;
                     } catch (Exception $e) {
                             // Deal with it.
                             echo "Error: " , $e->getMessage();
