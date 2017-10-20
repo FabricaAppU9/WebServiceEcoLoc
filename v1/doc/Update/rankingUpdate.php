@@ -4,35 +4,33 @@
     </head>
     <body>
     <div>
-    <form method='POST' action='periodosView.php'>
+        <form method='POST' action='rankingUpdate.php'>
         <label>Chave de acesso</label>
         <input type="text" name='CHAVE' value='12345'>
 
         <input type='hidden' name='valor' value='{"LOGIN":"JAN","SENHA":1234}' >
-        <input type='submit' name='getAlunos' value='Lista de alunos'></>
+        <input type='submit' name='rankingUpdate' value='Atualização de ranking'></>
     </form>
     </div>
     <div style="border: 1px solid black;min-height: 300px">
-    <?php
-        include_once '../../Class/alunos.class.php';
-
-        if (isset($_POST['getAlunos'])){
+    <?php  
+        if (isset($_POST['rankingUpdate'])){
             //Consumindo meu web service
 
-            $arr['CHAVE']=$_POST['CHAVE'];                 
-            $arr['CHAMADA']= 'GETPERIODOS'; 
+            $arr='CHAVE='.$_POST['CHAVE'];                 
+            $arr='CHAMADA='. 'UPDATERANKING'; 
 
             //echo $json;
-            $url= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
-            echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+            $url2= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
+            echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
             echo '<br><br>';                 
 
             try {
-               $jsonData = file_get_contents($url);
-                                    echo $jsonData;
+               $jsonData = file_get_contents($url2);
+               echo $jsonData;
             } catch (Exception $e) {
-                    // Deal with it.
-                    echo "Error: " , $e->getMessage();
+                // Deal with it.
+                echo "Error: " , $e->getMessage();
             }                
         }
         ?>

@@ -92,8 +92,8 @@ class Pontos {
        return  $codigo->ID;    
     }
 
-    public function deletarPonto($idUsuario) {
-        $result= $this->cnn->Conexao()->prepare("DELETE FROM Pontos WHERE id = '".id."'");
+    public function deletarPonto($IDPonto) {        
+        $result= $this->cnn->Conexao()->prepare("DELETE FROM Pontos WHERE id = ".$IDPonto);
         $result->execute();
         if ($result->rowCount()>0)
             return true;

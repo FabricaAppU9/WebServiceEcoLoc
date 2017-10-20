@@ -30,7 +30,16 @@ if (isset($_GET['CHAVE'])){
           if(isset($_GET['PARAM']))
              $ponto->setParam($_GET['PARAM']);          
           echo $ponto->getPontos();              
-       }else
+       }
+       elseif ($_GET['CHAMADA']=='DELETEPONTO') {             
+          include_once './class/Pontos.class.php';
+          $ponto = new Pontos();  
+          if ($ponto->deletarPonto($_GET['IDPONTO']))
+            echo '{"RETORNO":"PONTO DELETADO"}';
+          else 
+            echo '{"RETORNO":"PONTO NÃO DELETADO"}';    
+          
+        }else
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';         
     }else 
        echo '{"RETORNO":"CHAVE DE ACESSO INVALIDO"}';

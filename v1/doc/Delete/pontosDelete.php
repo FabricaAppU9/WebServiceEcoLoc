@@ -4,31 +4,31 @@
     </head>
     <body>
         <div>
-            <form method='POST' action='cursosView.php'>
+            <form method='POST' action='pontosDelete.php'>
             <label>Chave de acesso</label>
             <input type="text" name='CHAVE' value='12345'>
-            <input type='hidden' name='valor' value='{"LOGIN":"JAN","SENHA":1234}' >
-            <input type='submit' name='getAlunos' value='Lista de alunos'></>
+            <label>ID</label>
+            <input type="text" name='IDPONTO'>
+            <input type='submit' name='deletePontos' value='deletar pontos'></>
         </form>
         </div>
         <div style="border: 1px solid black;height: 300px">
             <?php
-            if (isset($_POST['getAlunos'])){
+            if (isset($_POST['deletePontos'])){
 
                 //Consumindo meu web service
 
-                $arr['CHAVE']=$_POST['CHAVE'];                 
-                $arr['CHAMADA'] ='GETCURSOS';                   
-                $json = json_encode($arr);
+                $url = 'CHAVE='.$_POST['CHAVE'];                 
+                $url=$url.'&CHAMADA='.'DELETEPONTO';                   
+                $url=$url.'&IDPONTO='.$_POST['IDPONTO'];                   
+            
 
-
-                //echo $json;
-                $url= "http://devjan.ddns.net:1234/ws_app/v1/ponto.php?action=$json";
-                echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
+                $url2= "http://devjan.esy.es/ws_app/v1/ponto.php?$url";
+                echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                 echo '<br><br>';                 
 
                 try {
-                   $jsonData = file_get_contents($url);
+                   $jsonData = file_get_contents($url2);
                    echo $jsonData;
                 } catch (Exception $e) {
                         // Deal with it.
