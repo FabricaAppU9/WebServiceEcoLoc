@@ -7,7 +7,8 @@
             <form method='POST' action='rankingRead.php'>
             <label>Chave de acesso</label>
             <input type="text" name='CHAVE' value='12345'>
-
+            <label>id Usuario</label>
+            <input type="text" name='IDUSUARIO'>    
             <input type='submit' name='getRanking' value='Lista de ranking'></>
         </form>
         </div>
@@ -19,6 +20,7 @@
 
                     $url='CHAVE='.$_POST['CHAVE'];                 
                     $url=$url.'&CHAMADA='.'GETRANKING';                   
+                    $url=$url.'&PARAM='.$_POST['IDUSUARIO'];                  
                     $url2= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
                     echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                     echo '<br><br>';                 

@@ -23,7 +23,15 @@ if (isset($_GET['CHAVE'])){
        }elseif ($_GET['CHAMADA']=='GETRANKING') {             
             include_once './class/ranking.class.php';
             $ranking = new ranking();
+            $ranking->setParam($_GET['PARAM']);
             echo $ranking->getRanking();
+       }elseif ($_GET['CHAMADA']=='DELETERANKING') {
+           include_once './class/ranking.class.php';
+            $ranking = new ranking();            
+           if( $ranking->deletar($_GET['IDUSUARIO'],$_GET['PONTUACAO'])){
+               echo '{"RETORNO":"DELETADO COM SUCESSO"}';
+           } else
+                echo '{"RETORNO":"NãO DELETADO"}';                   
        }else{
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';   
        }

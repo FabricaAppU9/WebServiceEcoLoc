@@ -6,7 +6,11 @@
             <div>
                 <form method='POST' action='rankingDelete.php'>
                 <label>Chave de acesso</label>
-                <input type="text" name='CHAVE' value='12345'>                
+                <input type="text" name='CHAVE' value='12345'>
+                <label>Id Usuario</label>
+                <input type="text" name='IDUSUARIO'>
+                <label>Pontuacao</label>
+                <input type="text" name='PONTUACAO'>  
                 <input type='submit' name='deleteRanking' value='deletarRanking'></>
             </form>
             </div>
@@ -16,7 +20,9 @@
 
                         //Consumindo meu web service
                         $url='CHAVE='.$_POST['CHAVE'];                 
-                        $url='CHAMADA='. 'DELETERANKING';   
+                        $url=$url.'&CHAMADA='. 'DELETERANKING';   
+                        $url=$url.'&IDUSUARIO='.$_POST['IDUSUARIO'];   
+                        $url=$url.'&PONTUACAO='.$_POST['PONTUACAO'];   
                        
                         $url2= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
                         echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;

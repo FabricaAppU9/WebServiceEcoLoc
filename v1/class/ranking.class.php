@@ -7,7 +7,14 @@ class ranking {
     private $param;
     private $SQL;
     private $cnn;
-            
+    function setParam($param) {
+        if ($param <>''){
+         $this->param = ' WHERE U.id = '.$param;
+        } else {
+            $this->param ='';
+        }
+    }
+    
     public function __construct() {
         $this->cnn = new conexao();  
     }
@@ -21,7 +28,7 @@ class ranking {
     public function getRanking() {
         $cnn = new conexao();
         $result= $cnn->Conexao()->query("SELECT U.NOME,SUM(R.pontuacao) as PONTUACAO FROM Ranking R
-                                        INNER JOIN UsuarioDTO U on U.id = R.idUsuario
+                                        INNER JOIN UsuarioDTO U on U.id = R.idUsuario $this->param
                                         group by U.nome");
         //resut set alimentado para retornar o json
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -53,5 +60,14 @@ class ranking {
     }
     public function getNovoCodigo(){
         return $this->codCurso;
+    }
+    public function deletar($idUsuario,$pontuacao){
+        $this->SQL = "DELETE FROM Ranking where idUsuario = $idUsuario and pontuacao= $pontuacao LIMIT 1";
+        //echo $this->SQL;
+        $result = $this->cnn->Conexao()->prepare($this->SQL);
+        if ($result->execute()>0){
+            return true;
+        }else
+            return false;  
     }
 }
