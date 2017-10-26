@@ -71,12 +71,12 @@ class usuariosDTO {
     public function salvar() {
         if ($this->id == '-1'){ 
             $count  = -1; 
-            if ($this->getLogin() = FALSE){
+            if ($this->getLogin()== FALSE){
                 $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha) VALUES('-1','$this->nome','$this->login','$this->senha')";
                 //echo $this->SQL;
                 $result = $this->cnn->Conexao()->prepare($this->SQL);
                 $result->execute();  
-                $result->rowCount();
+                $count=  $result->rowCount();
             }
                      
         }else{

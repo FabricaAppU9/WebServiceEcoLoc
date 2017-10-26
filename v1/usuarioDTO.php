@@ -11,7 +11,7 @@ if (isset($_GET['CHAVE'])){
               $result = $usuarioDTO->salvar(); 
             if ($result>0)
                 echo '{"RETORNO":"SUCESSO", "ID":"'.$usuarioDTO->getIDUsuario().'"}';
-            elseif ($$result = -1) 
+            elseif ($result = -1) 
                 echo '{"RETORNO":"LOGIN EM USO"}'; 
             else
                 echo '{"RETORNO":"NÃO CADASTADO"}';
