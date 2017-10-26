@@ -8,9 +8,11 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setNome($_GET['NOME']); 
             $usuarioDTO->setLogin($_GET['LOGIN']);
             $usuarioDTO->setSenha($_GET['SENHA']);
-               
-            if ($usuarioDTO->salvar()>0)
+              $result = $usuarioDTO->salvar(); 
+            if ($result>0)
                 echo '{"RETORNO":"SUCESSO", "ID":"'.$usuarioDTO->getIDUsuario().'"}';
+            elseif ($$result = -1) 
+                echo '{"RETORNO":"LOGIN EM USO"}'; 
             else
                 echo '{"RETORNO":"NÃO CADASTADO"}';
            
@@ -23,7 +25,7 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setSenha($_GET['SENHA']);
             
             if ($usuarioDTO->salvar()>0)
-                echo '{"RETORNO":"ATUALIZADO COM SUCESSO"}';
+                echo '{"RETORNO":"ATUALIZADO COM SUCESSO"}';                     
             else
                 echo '{"RETORNO":"NãO ATUALIZADO"}';
             
@@ -42,6 +44,18 @@ if (isset($_GET['CHAVE'])){
             else
               echo '{"RETORNO":"NãO DELETADO"}';
           
+       }elseif ($_GET['CHAMADA']=='GETLOGARUSUARIO') {
+             include_once './class/usuariosDTO.class.php'; 
+             //echo $_GET['IDUSUARIO'];
+            $usuarioDTO = new usuariosDTO();       
+            $usuarioDTO->setLogin($_GET['LOGIN']);
+            $usuarioDTO->setSenha($_GET['SENHA']);
+            
+            if ($usuarioDTO->getLogar())
+                echo '{"RETORNO":"LOGADO COM SUCESSO"}';
+            else
+                echo '{"RETORNO":"NAO ENCONTRADO"}';
+            
        }else{
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';   
        }

@@ -12,12 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/doc/Read/usuarioDTORead.php</file>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/class/Pontos.class.php</file>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/usuarioDTO.php</file>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/doc/Read/pontosRead.php</file>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/doc/Create/pontosCreate.php</file>
-            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/ponto.php</file>
+            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/class/ranking.class.php</file>
+            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/doc/Delete/rankingDelete.php</file>
+            <file>file:/D:/Projetos/Android/WebServiceEcoLoc/v1/ranking.php</file>
         </group>
     </open-files>
 </project-private>

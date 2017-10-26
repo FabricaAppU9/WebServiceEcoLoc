@@ -69,18 +69,23 @@ class usuariosDTO {
     }
     
     public function salvar() {
-        if ($this->id == '-1'){           
-            $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha) VALUES('-1','$this->nome','$this->login','$this->senha')";
-            //echo $this->SQL;
-            $result = $this->cnn->Conexao()->prepare($this->SQL);
-            $result->execute();            
+        if ($this->id == '-1'){ 
+            $count  = -1; 
+            if ($this->getLogin() = FALSE){
+                $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha) VALUES('-1','$this->nome','$this->login','$this->senha')";
+                //echo $this->SQL;
+                $result = $this->cnn->Conexao()->prepare($this->SQL);
+                $result->execute();  
+                $result->rowCount();
+            }
+                     
         }else{
             $this->SQL = "UPDATE  UsuarioDTO SET NOME = '$this->nome', SENHA='$this->senha', LOGIN='$this->login' WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
         }        
-            return $result->rowCount();
+            return $count;
     }
     public function getIDUsuario(){
          $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO  ORDER BY id DESC LIMIT 1");
@@ -92,7 +97,32 @@ class usuariosDTO {
         }    
        return  $codigo->ID;    
     }
-
+     public function getLogar(){
+         $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO WHERE login='$this->login' and senha='$this->senha' ORDER BY id DESC LIMIT 1");
+	 $result->execute();
+		 
+        //resut set alimentado para retornar o json
+        while($row = $result->fetch(PDO::FETCH_OBJ)){
+            $codigo= $row;
+        }    
+        if ($codigo >= 1)
+            return TRUE;
+        else
+            return FALSE;
+    }
+    private function getLogin(){
+         $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO WHERE login='$this->login' ORDER BY id DESC LIMIT 1");
+	 $result->execute();
+		 
+        //resut set alimentado para retornar o json
+        while($row = $result->fetch(PDO::FETCH_OBJ)){
+            $codigo= $row;
+        }    
+        if ($codigo >= 1)
+            return TRUE;
+        else
+            return FALSE;
+    }
     public function deletarUsuario($idUsuario) {
         $result= $this->cnn->Conexao()->prepare("DELETE FROM UsuarioDTO WHERE id = ".$idUsuario);
         $result->execute();
