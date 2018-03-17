@@ -25,7 +25,7 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setSenha($_GET['SENHA']);
             
             if ($usuarioDTO->salvar()>0)
-                echo '{"RETORNO":"ATUALIZADO COM SUCESSO"}';                     
+                echo '{"RETORNO":"SUCESSO"}';                     
             else
                 echo '{"RETORNO":"NãO ATUALIZADO"}';
             
@@ -40,7 +40,7 @@ if (isset($_GET['CHAVE'])){
            include_once './class/usuariosDTO.class.php';
            $usuarioDTO = new usuariosDTO();
           if ($usuarioDTO->deletarUsuario($_GET['CODALUNO']) >=1)
-              echo '{"RETORNO":"DELETADO COM SUCESSO"}';
+              echo '{"RETORNO":"SUCESSO"}';
             else
               echo '{"RETORNO":"NãO DELETADO"}';
           
@@ -52,9 +52,9 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setSenha($_GET['SENHA']);
             
             if ($usuarioDTO->getLogar())
-                echo '{"RETORNO":"LOGADO COM SUCESSO"}';
+                echo '{"RETORNO":"SUCESSO"}';
             else
-                echo '{"RETORNO":"NAO ENCONTRADO"}';
+                echo '{"RETORNO":"FALHOU"}';
             
        }else{
         echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';   

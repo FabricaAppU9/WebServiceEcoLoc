@@ -6,6 +6,7 @@ if (isset($_GET['CHAVE'])){
             include_once './class/Pontos.class.php';
                 $ponto = new Pontos(); 
                 $ponto->setDescricao($_GET['DESCRICAO']);
+                $ponto->setTipoMaterial($_GET['TIPOMATERIAL']);
                 $ponto->setLatitude($_GET['LATITUDE']);
                 $ponto->setLongitude($_GET['LONGETUDE']);
                 if ($ponto->salvar()){
@@ -17,6 +18,7 @@ if (isset($_GET['CHAVE'])){
             include_once './class/Pontos.class.php';
             $ponto = new Pontos($_GET['IDPONTO']); 
             $ponto->setDescricao($_GET['DESCRICAO']);
+            $ponto->setTipoMaterial($_GET['TIPOMATERIAL']);
             $ponto->setLatitude($_GET['LATITUDE']);
             $ponto->setLongitude($_GET['LONGITUDE']);
             if ($ponto->salvar())            
@@ -28,8 +30,10 @@ if (isset($_GET['CHAVE'])){
           include_once './class/Pontos.class.php';
           $ponto = new Pontos();  
           if(isset($_GET['PARAM']))
-             $ponto->setParam($_GET['PARAM']);          
+             $ponto->setParam($_GET['PARAM']);   
+        
           echo $ponto->getPontos();              
+         
        }
        elseif ($_GET['CHAMADA']=='DELETEPONTO') {             
           include_once './class/Pontos.class.php';

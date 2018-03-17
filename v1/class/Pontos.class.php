@@ -4,12 +4,21 @@ include_once 'conexao.class.php';
 class Pontos {
     private $id;
     private $descricao;
+    private $tipoMaterial;
     private $latitude;
     private $longitude;
     private $param;
     private $SQL;
     
-    public function __construct($ID = "") {
+    function getTipoMaterial() {
+        return $this->tipoMaterial;
+    }
+
+    function setTipoMaterial($tipoMaterial) {
+        $this->tipoMaterial = $tipoMaterial;
+    }
+
+        public function __construct($ID = "") {
         $this->cnn = new conexao();
 
         $this->SQL = "SELECT * FROM Pontos WHERE id = ".$ID;
@@ -58,7 +67,7 @@ class Pontos {
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $tr[] = $row;
         }
-        return json_encode($tr, true);
+        return json_encode($tr, JSON_PRETTY_PRINT);
     }
     
      public function setParam($param){
@@ -70,12 +79,12 @@ class Pontos {
     
     public function salvar() {
         if ($this->id == '-1'){           
-            $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude) VALUES('-1','$this->descricao','$this->latitude','$this->longitude')";
+            $this->SQL = "INSERT INTO Pontos(id,descricao,tipomaterial,latitude,longitude) VALUES('-1','$this->descricao','$this->tipoMaterial','$this->latitude','$this->longitude')";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();            
         }else{
-            $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude' WHERE ID='$this->id'";
+            $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao','tipomaterial=$this->tipoMaterial', latitude='$this->longitude', longitude='$this->latitude' WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();

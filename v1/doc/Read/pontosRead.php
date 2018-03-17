@@ -12,7 +12,8 @@
                 <input type='submit' name='getPontos' value='Listar pontos'></>
             </form>
         </div>
-        <div style="border: 1px solid black;height: 300px">
+         <a href='../index.php'>Principal</a> 
+        <div style="border: 1px solid black;min-height:  300px">
             <?php
                 if (isset($_POST['getPontos'])){
 
@@ -30,7 +31,9 @@
 
                     try {
                        $jsonData = file_get_contents($url2);
-                       echo $jsonData;
+                       echo '<pre>';
+                       echo $jsonData;                       
+                       echo '</pre>';
                     } catch (Exception $e) {
                             // Deal with it.
                             echo "Error: " , $e->getMessage();
@@ -38,6 +41,6 @@
                 }
                 ?>
         </div>
-        <a href='../index.php'>Principal</a>  
+        
 	</body>		
 </html>

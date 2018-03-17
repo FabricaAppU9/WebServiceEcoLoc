@@ -9,6 +9,8 @@
         <input type="text" name='CHAVE' value='12345'>
         <label>Descricao:</label>    
         <input type="text" name="DESCRICAO" value="" placeholder="">
+        <label>Tipo Material:</label>    
+        <input type="text" name="TIPOMATERIAL" value="" placeholder="">
         <label>Latitude:</label>
         <input type="text" name="LATITUDE" value="" placeholder="">
         <label>Longetude:</label>
@@ -24,6 +26,7 @@
                 $url = "CHAVE=" . $_POST['CHAVE'];                 
                 $url = $url . "&CHAMADA=". "CRIARPONTO"; 
                 $url = $url . "&DESCRICAO=" . $_POST["DESCRICAO"]; 
+                $url = $url . "&TIPOMATERIAL=" . $_POST["TIPOMATERIAL"];
                 $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
             
@@ -34,7 +37,7 @@
 
                 try {
                    $jsonData = file_get_contents($url2);
-                            echo $jsonData;
+                    echo $jsonData;
                 } catch (Exception $e) {
                     // Deal with it.
                     echo "Error: " , $e->getMessage();
