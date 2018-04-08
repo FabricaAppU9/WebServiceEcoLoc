@@ -67,7 +67,7 @@ class Pontos {
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $tr[] = $row;
         }            
-        return json_encode(array("PontoDto"=>$tr) ); 
+        return json_encode($tr); 
         //return '[{"id":"4","descricao":"ECOPONTO","latitude":"DDD","longitude":"36256521","tipomaterial":"DDD"}]';
     }
      public function setParam($param){
