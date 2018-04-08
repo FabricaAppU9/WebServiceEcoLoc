@@ -3,14 +3,30 @@ include_once 'conexao.class.php';
 
 class usuariosDTO {
     private $param ="";
-    public $id;
+    private $id;
     private $nome="";
     private $login="";
     private $senha ="";
+    private $foto ="";
     private $cnn="";
     private $SQL = "";
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
     
-    public function __construct($ID = "") {
+    function getFoto() {
+        return $this->foto;
+    }
+
+    function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
+        public function __construct($ID = "") {
         $this->cnn = new conexao();
 
         $this->SQL = "SELECT * FROM UsuarioDTO WHERE id = ".$ID."";
@@ -72,7 +88,7 @@ class usuariosDTO {
         if ($this->id == '-1'){ 
             $count  = -1; 
             if ($this->getLogin()== FALSE){
-                $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha) VALUES('-1','$this->nome','$this->login','$this->senha')";
+                $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha,foto) VALUES('-1','$this->nome','$this->login','$this->senha','$this->foto')";
                 //echo $this->SQL;
                 $result = $this->cnn->Conexao()->prepare($this->SQL);
                 $result->execute();  
@@ -80,7 +96,7 @@ class usuariosDTO {
             }
                      
         }else{
-            $this->SQL = "UPDATE  UsuarioDTO SET NOME = '$this->nome', SENHA='$this->senha', LOGIN='$this->login' WHERE ID='$this->id'";
+            $this->SQL = "UPDATE  UsuarioDTO SET NOME = '$this->nome', SENHA='$this->senha', LOGIN='$this->login', FOTO = '$this->foto' WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
@@ -105,9 +121,10 @@ class usuariosDTO {
         while($row = $result->fetch(PDO::FETCH_OBJ)){
             $codigo= $row;
         }    
-        if ($codigo >= 1)
+        if ($codigo->ID >0){
+            $this->setId($codigo->ID);
             return TRUE;
-        else
+        }else
             return FALSE;
     }
     private function getLogin(){
@@ -118,9 +135,10 @@ class usuariosDTO {
         while($row = $result->fetch(PDO::FETCH_OBJ)){
             $codigo= $row;
         }    
-        if ($codigo >= 1)
+        if ($codigo->ID >= 1){
+            $this->setId($codigo>ID);
             return TRUE;
-        else
+        }else
             return FALSE;
     }
     public function deletarUsuario($idUsuario) {

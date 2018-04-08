@@ -8,6 +8,7 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setNome($_GET['NOME']); 
             $usuarioDTO->setLogin($_GET['LOGIN']);
             $usuarioDTO->setSenha($_GET['SENHA']);
+            $usuarioDTO->setFoto($_GET['FOTO']);            
               $result = $usuarioDTO->salvar(); 
             if ($result>0)
                 echo '{"RETORNO":"SUCESSO", "ID":"'.$usuarioDTO->getIDUsuario().'"}';
@@ -51,8 +52,8 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setLogin($_GET['LOGIN']);
             $usuarioDTO->setSenha($_GET['SENHA']);
             
-            if ($usuarioDTO->getLogar())
-                echo '{"RETORNO":"SUCESSO"}';
+            if ($usuarioDTO->getLogar()>0)
+                echo '{"RETORNO":"SUCESSO","ID":'.$usuarioDTO->getId().'}';
             else
                 echo '{"RETORNO":"FALHOU"}';
             

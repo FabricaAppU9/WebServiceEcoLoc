@@ -66,10 +66,10 @@ class Pontos {
         //resut set alimentado para retornar o json
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $tr[] = $row;
-        }
-        return json_encode($tr, JSON_PRETTY_PRINT);
+        }            
+        return json_encode(array("PontoDto"=>$tr) ); 
+        //return '[{"id":"4","descricao":"ECOPONTO","latitude":"DDD","longitude":"36256521","tipomaterial":"DDD"}]';
     }
-    
      public function setParam($param){
         if ($param<>'')
             $this->param = explode(',',$param);

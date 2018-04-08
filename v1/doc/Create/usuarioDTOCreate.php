@@ -16,6 +16,8 @@
             <input type="text" name='LOGIN' value='' placeholder="">
             <label>Senha: </label>
             <input type="text" name='SENHA' value='' placeholder="">
+            <label>Foto: </label>
+            <input type="text" name='FOTO' value='' placeholder="">            
             <input type='submit' name='btnGravar' value='Gravar usuario'></>
         </form>
     </div>
@@ -28,7 +30,7 @@
                 $url = $url . "&NOME=" . $_POST["NOME"]; 
                 $url = $url . "&LOGIN=". $_POST["LOGIN"];                
                 $url = $url . "&SENHA=". $_POST["SENHA"];                
-               
+                $url = $url . "&FOTO=". $_POST["FOTO"];
                 
                 $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
