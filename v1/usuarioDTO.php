@@ -44,7 +44,7 @@ if (isset($_GET['CHAVE'])){
               echo '{"RETORNO":"SUCESSO"}';
             else
               echo '{"RETORNO":"NãO DELETADO"}';
-          
+       
        }elseif ($_GET['CHAMADA']=='GETLOGARUSUARIO') {
              include_once './class/usuariosDTO.class.php'; 
              //echo $_GET['IDUSUARIO'];
@@ -53,7 +53,7 @@ if (isset($_GET['CHAVE'])){
             $usuarioDTO->setSenha($_GET['SENHA']);
             
             if ($usuarioDTO->getLogar()>0)
-                echo '{"RETORNO":"SUCESSO","ID":'.$usuarioDTO->getId().'}';
+                echo '{"RETORNO":"SUCESSO","ID":"'.$usuarioDTO->getId().'","NOME":"'.$usuarioDTO->getNome().'","LOGIN":"'.$usuarioDTO->getLogin().'","SENHA":"'.$usuarioDTO->getSenha().'","FOTO":"'.$usuarioDTO->getFoto().'"}';
             else
                 echo '{"RETORNO":"FALHOU"}';
             

@@ -13,7 +13,7 @@ class usuariosDTO {
     function getId() {
         return $this->id;
     }
-
+   
     function setId($id) {
         $this->id = $id;
     }
@@ -21,11 +21,13 @@ class usuariosDTO {
     function getFoto() {
         return $this->foto;
     }
-
+    function getLogin() {
+        return $this->login;
+    }
     function setFoto($foto) {
         $this->foto = $foto;
     }
-
+   
         public function __construct($ID = "") {
         $this->cnn = new conexao();
 
@@ -52,6 +54,7 @@ class usuariosDTO {
     public function setnome($Nome){
       $this->nome=$Nome;
     }
+    
     public function setSenha($Senha){
         $this->senha=$Senha;
     }
@@ -87,7 +90,7 @@ class usuariosDTO {
     public function salvar() {
         if ($this->id == '-1'){ 
             $count  = -1; 
-            if ($this->getLogin()== FALSE){
+            if ($this->getLoginn()== FALSE){
                 $this->SQL = "INSERT INTO UsuarioDTO(id,nome,login,senha,foto) VALUES('-1','$this->nome','$this->login','$this->senha','$this->foto')";
                 //echo $this->SQL;
                 $result = $this->cnn->Conexao()->prepare($this->SQL);
@@ -104,6 +107,7 @@ class usuariosDTO {
             return $count;
     }
     public function getIDUsuario(){
+       
          $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO  ORDER BY id DESC LIMIT 1");
 		 $result->execute();
 		 
@@ -113,8 +117,16 @@ class usuariosDTO {
         }    
        return  $codigo->ID;    
     }
-     public function getLogar(){
-         $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO WHERE login='$this->login' and senha='$this->senha' ORDER BY id DESC LIMIT 1");
+    function getNome() {
+        return $this->nome;
+    }
+
+    function getSenha() {
+        return $this->senha;
+    }
+
+         public function getLogar(){
+         $result= $this->cnn->Conexao()->prepare("SELECT ID, NOME, LOGIN,SENHA, FOTO FROM UsuarioDTO WHERE login='$this->login' and senha='$this->senha' ORDER BY id DESC LIMIT 1");
 	 $result->execute();
 		 
         //resut set alimentado para retornar o json
@@ -123,11 +135,15 @@ class usuariosDTO {
         }    
         if ($codigo->ID >0){
             $this->setId($codigo->ID);
+            $this->setnome($codigo->NOME);
+            $this->setLogin($codigo->LOGIN);
+            $this->setSenha($codigo->SENHA);
+            $this->setFoto($codigo->FOTO);
             return TRUE;
         }else
             return FALSE;
     }
-    private function getLogin(){
+    private function getLoginn(){
          $result= $this->cnn->Conexao()->prepare("SELECT ID FROM UsuarioDTO WHERE login='$this->login' ORDER BY id DESC LIMIT 1");
 	 $result->execute();
 		 

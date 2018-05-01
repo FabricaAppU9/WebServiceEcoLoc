@@ -15,6 +15,7 @@
                     <ul>
                         <li><a href='Create/usuarioDTOCreate.php'>Criar Usuários</a></li>
                         <li><a href='Read/usuarioDTORead.php'>Seleção de Usuários</a></li>
+                        <li><a href='Read/usuarioDto.php'>Seleção de Usuário</a></li>
                         <li><a href='Update/usuarioDTOUpdate.php'>Atualizar Usuário</a></li>
                         <li><a href='Delete/usuarioDTODelete.php'>Deletar Usuário</a></li>
                         <li><a href='Read/usuarioDTOReadLogar.php'>Logar</a></li>
