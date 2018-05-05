@@ -39,6 +39,13 @@
                     <li><a href='Delete/rankingDelete.php'>Deletar Ranking</a></li>
                 </ul>
             </li>
+            <li>
+                <p>Exemplo de todos os metódos referentes há tipos de materias</p>
+                <ul>                    
+                    <li><a href='Read/tipoMaterialRead.php'>Seleção dos Ranking</a></li>                    
+                </ul>
+            </li>
+            
 
         </ul>    
         <p>CRIADO POR JANAILSON ROCHA DE SOUSA</p>

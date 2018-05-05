@@ -93,6 +93,12 @@ if (isset($_GET['action'])){
             case "DELETERANKING":
                 include_once './class/ranking.class.php';
                 break;
+            
+            case "GETTIPOMATERIAL":
+                include_once './class/TipoMaterial.php';
+                $material = new TipoMaterial();
+                echo $material->getTipoMaterial();
+                break;
             default:
                 echo 'A chamada '. $CALLDecode->CHAMADA .' não foi encontrada';
                 break;

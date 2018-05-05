@@ -5,10 +5,10 @@ if (isset($_GET['CHAVE'])){
        if ($_GET['CHAMADA']=='CRIARPONTO'){
             include_once './class/Pontos.class.php';
                 $ponto = new Pontos(); 
-                $ponto->setDescricao($_GET['DESCRICAO']);
-                $ponto->setTipoMaterial($_GET['TIPOMATERIAL']);
+                $ponto->setDescricao($_GET['DESCRICAO']);              
                 $ponto->setLatitude($_GET['LATITUDE']);
                 $ponto->setLongitude($_GET['LONGETUDE']);
+                $ponto->setIdUsuario($_GET['IDUSUARIODTO']);
                 if ($ponto->salvar()){
                     echo '{"RETORNO":"SUCESSO", "CODIGO":"'.$ponto->getIDPonto().'"}';
                 }else{
@@ -17,10 +17,10 @@ if (isset($_GET['CHAVE'])){
        }elseif ($_GET['CHAMADA']=='UPDATEPONTO') {
             include_once './class/Pontos.class.php';
             $ponto = new Pontos($_GET['IDPONTO']); 
-            $ponto->setDescricao($_GET['DESCRICAO']);
-            $ponto->setTipoMaterial($_GET['TIPOMATERIAL']);
+            $ponto->setDescricao($_GET['DESCRICAO']);            
             $ponto->setLatitude($_GET['LATITUDE']);
             $ponto->setLongitude($_GET['LONGITUDE']);
+            $ponto->setIdUsuario($_GET['IDUSUARIODTO']);
             if ($ponto->salvar())            
                 echo '{"RETORNO":"ATUALIZADO COM SUCESSO"}';
             else

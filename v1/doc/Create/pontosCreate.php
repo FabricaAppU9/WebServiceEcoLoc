@@ -8,14 +8,13 @@
         <label>Chave de acesso</label>
         <input type="text" name='CHAVE' value='12345'>
         <label>Descricao:</label>    
-        <input type="text" name="DESCRICAO" value="" placeholder="">
-        <label>Tipo Material:</label>    
-        <input type="text" name="TIPOMATERIAL" value="" placeholder="">
+        <input type="text" name="DESCRICAO" value="" placeholder="">        
         <label>Latitude:</label>
         <input type="text" name="LATITUDE" value="" placeholder="">
         <label>Longetude:</label>
         <input type="text" name="LONGETUDE" value="" placeholder="">
-        
+        <label>idUsuarioDTO:</label>
+        <input type="text" name="IDUSUARIODTO" value="" placeholder="">
         <input type='submit' name='btnSalvar' value='Gravar Ponto'></>
     </form>
     </div>
@@ -25,11 +24,10 @@
                 //Consumindo meu web service
                 $url = "CHAVE=" . $_POST['CHAVE'];                 
                 $url = $url . "&CHAMADA=". "CRIARPONTO"; 
-                $url = $url . "&DESCRICAO=" . $_POST["DESCRICAO"]; 
-                $url = $url . "&TIPOMATERIAL=" . $_POST["TIPOMATERIAL"];
+                $url = $url . "&DESCRICAO=" . $_POST["DESCRICAO"];                 
                 $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
-            
+                $url = $url . "&IDUSUARIODTO=". $_POST["IDUSUARIODTO"];    
                 $url2= "http://devjan.esy.es/ws_app/v1/ponto.php?".$url;
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
                 echo $url2;

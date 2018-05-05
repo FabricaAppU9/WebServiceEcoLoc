@@ -13,6 +13,8 @@
             <input type="text" name='LATITUDE'>
             <label>Longitude</label>
             <input type="text" name='LONGITUDE'>
+            <label>idUsuarioDTO:</label>
+            <input type="text" name="IDUSUARIODTO" value="" placeholder="">
             <label>ID</label>
             <input type="text" name='IDPONTO'>
             <input type='submit' name='updatePontos' value='Atualizar'></>
