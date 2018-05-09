@@ -14,14 +14,15 @@
     </div>
     <div style="border: 1px solid black;min-height: 300px">
     <?php  
+        include_once '../endPoint.php';
         if (isset($_POST['rankingUpdate'])){
             //Consumindo meu web service
 
             $arr='CHAVE='.$_POST['CHAVE'];                 
             $arr='CHAMADA='. 'UPDATERANKING'; 
 
-            //echo $json;
-            $url2= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
+            $path = new EndPoint();
+            $url2= $path->getEndPoint()."/ws_app/v1/ranking.php?$url";
             echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
             echo '<br><br>';                 
 

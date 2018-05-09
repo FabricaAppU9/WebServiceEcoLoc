@@ -14,14 +14,15 @@
         </div>
         <div style="border: 1px solid black;min-height: 300px">
             <?php
+                include_once '../endPoint.php';
                 if (isset($_POST['getUsuarios'])){
                     //Consumindo meu web service                    
                     $url = 'CHAVE='.$_POST['CHAVE'];                 
                     $url = $url.'&CHAMADA='.'GETUSUARIOSDTO'; 
-                    $url = $url.'&PARAM=' . $_POST['PARAM']; 
-                                 
+                    $url = $url.'&PARAM=' . $_POST['PARAM'];                                 
 
-                    $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
+                    $path = new EndPoint();
+                    $url2= $path->getEndPoint()."ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
                     echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>".$url2;
                     echo '<br><br>';                 
 

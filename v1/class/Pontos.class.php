@@ -78,7 +78,7 @@ class Pontos {
     public function salvar() {
         if ($this->id == '-1'){           
             $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude,idUsuarioDTO) VALUES('-1','$this->descricao','$this->latitude','$this->longitude',$this->idUsuario)";
-            echo $this->SQL;
+            //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();            
         }else{

@@ -20,6 +20,7 @@
     </div>
     <div style="border: 1px solid black;min-height: 300px">
         <?php
+            include_once '../endPoint.php';
             if (isset($_POST['btnSalvar'])){
                 //Consumindo meu web service
                 $url = "CHAVE=" . $_POST['CHAVE'];                 
@@ -28,7 +29,8 @@
                 $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
                 $url = $url . "&IDUSUARIODTO=". $_POST["IDUSUARIODTO"];    
-                $url2= "http://devjan.esy.es/ws_app/v1/ponto.php?".$url;
+                $path = new EndPoint();
+                $url2= $path->getEndPoint()."ws_app/v1/ponto.php?".$url;
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
                 echo $url2;
                 echo '<br><br>';                 

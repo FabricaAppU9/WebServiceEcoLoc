@@ -13,6 +13,7 @@
          <a href='../index.php'>Principal</a> 
         <div style="border: 1px solid black;min-height:  300px">
             <?php
+                include_once '../endPoint.php';
                 if (isset($_POST['getTipoMaterial'])){
 
                     //Consumindo meu web service
@@ -20,8 +21,8 @@
                     $url = 'CHAVE='.$_POST['CHAVE'];                 
                     $url = $url.'&CHAMADA='.'GETTIPOMATERIAL';                     
 
-                    //echo $json;
-                    $url2= "http://devjan.esy.es/ws_app/v1/tipoMaterial.php?$url";
+                    $path = new EndPoint();
+                    $url2= $path->getEndPoint()."ws_app/v1/tipoMaterial.php?$url";
                     echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url2;
                     echo '<br><br>';                 
 

@@ -1,9 +1,9 @@
 <?php
 
 class conexao {
-    private $user= 'u787190517_app';
+    private $user= 'id5683820_hoot';
     private $pass= '123456';
-    private $dbname ='u787190517_app';
+    private $dbname ='id5683820_ws_app';
     private $servidor='localhost';
     private $dns = '';
     public function Conexao() {

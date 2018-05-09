@@ -15,7 +15,8 @@
             </form>
             </div>
             <div style="border: 1px solid black;min-height: 300px">
-                <?php                   
+                <?php  
+                    include_once '../endPoint.php';
                     if (isset($_POST['deleteRanking'])){
 
                         //Consumindo meu web service
@@ -24,7 +25,8 @@
                         $url=$url.'&IDUSUARIO='.$_POST['IDUSUARIO'];   
                         $url=$url.'&PONTUACAO='.$_POST['PONTUACAO'];   
                        
-                        $url2= "http://devjan.esy.es/ws_app/v1/ranking.php?$url";
+                        $path = new EndPoint();
+                        $url2= $path->getEndPoint()."ws_app/v1/ranking.php?$url";
                         echo "     EXEMPO DE LINK PARA REQUISIÇÃO ".$url;
                         echo '<br><br>';                 
 

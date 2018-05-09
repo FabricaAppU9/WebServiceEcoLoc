@@ -19,6 +19,7 @@
     </div>
     <div style="border: 1px solid black;height: 300px">
         <?php
+            include_once '../endPoint.php';
             if (isset($_POST['btnLogar'])){
                 //Consumindo meu web service                    
                 $url = "CHAVE=" . $_POST['CHAVE'];                 
@@ -27,7 +28,8 @@
                 $url = $url . "&SENHA=". $_POST["SENHA"];                
                
                 
-                $url2= "http://devjan.esy.es/ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
+                $path = new EndPoint();
+                $url2= $path->getEndPoint()."ws_app/v1/usuarioDTO.php?".str_replace(' ','+',$url);
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
                 echo $url2;
                 echo '<br><br>';                 
