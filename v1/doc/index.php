@@ -42,7 +42,7 @@
             <li>
                 <p>Exemplo de todos os metódos referentes há tipos de materias</p>
                 <ul>                    
-                    <li><a href='Read/tipoMaterialRead.php'>Seleção dos Ranking</a></li>                    
+                    <li><a href='Read/tipoMaterialRead.php'>Seleção de tipos de material></li>                    
                 </ul>
             </li>
             

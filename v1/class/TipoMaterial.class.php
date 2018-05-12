@@ -48,7 +48,7 @@ class TipoMaterial {
             $where='';        
          
         $cnn = new conexao();
-        $result= $cnn->Conexao()->query("SELECT * FROM tipoMaterial");
+        $result= $cnn->Conexao()->query("SELECT * FROM TipoMaterial");
         //resut set alimentado para retornar o json
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             $tr[] = $row;
