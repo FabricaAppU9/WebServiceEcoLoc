@@ -30,7 +30,7 @@
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
                 $url = $url . "&IDUSUARIODTO=". $_POST["IDUSUARIODTO"];    
                 $path = new EndPoint();
-                $url2= $path->getEndPoint()."ws_app/v1/ponto.php?".$url;
+                $url2= $path->getEndPoint()."ws_app/v1/ponto.php?".str_replace(' ','+',$url);
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";
                 echo $url2;
                 echo '<br><br>';                 

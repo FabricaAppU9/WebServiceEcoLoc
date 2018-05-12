@@ -28,6 +28,7 @@
                         <li><a href='Read/pontosRead.php'>Selecionar Ponto</a></li>
                         <li><a href='Update/pontosUpdate.php'>Atualizar Ponto</a></li>
                         <li><a href='Delete/pontosDelete.php'>Deletar Ponto</a></li>
+                        <li><a href='Read/pontoLike.php'>Like/Dislake</a></li>
                     </ul>
                 </li>
             <li>

@@ -27,24 +27,36 @@ if (isset($_GET['CHAVE'])){
                 echo '{"RETORNO":"NãO ATUALIZADO"}';
             
        }elseif ($_GET['CHAMADA']=='GETPONTOS') {             
-          include_once './class/Pontos.class.php';
-          $ponto = new Pontos();  
-          if(isset($_GET['PARAM']))
-             $ponto->setParam($_GET['PARAM']);   
-        
-          echo $ponto->getPontos();              
-         
-       }
-       elseif ($_GET['CHAMADA']=='DELETEPONTO') {             
-          include_once './class/Pontos.class.php';
-          $ponto = new Pontos();  
-          if ($ponto->deletarPonto($_GET['IDPONTO']))
-            echo '{"RETORNO":"PONTO DELETADO"}';
-          else 
-            echo '{"RETORNO":"PONTO NÃO DELETADO"}';    
+            include_once './class/Pontos.class.php';
+            $ponto = new Pontos();  
+            if(isset($_GET['PARAM']))
+                $ponto->setParam($_GET['PARAM']);   
+            echo $ponto->getPontos();                   
+       }elseif ($_GET['CHAMADA']=='DELETEPONTO') {             
+            include_once './class/Pontos.class.php';
+            $ponto = new Pontos();  
+            if ($ponto->deletarPonto($_GET['IDPONTO']))
+               echo '{"RETORNO":"PONTO DELETADO"}';
+            else 
+               echo '{"RETORNO":"PONTO NAO DELETADO"}';    
           
-        }else
-        echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';         
+          }elseif ($_GET['CHAMADA']=='SETLIKE') {  
+                include_once './class/Pontos.class.php';
+                $ponto = new Pontos();
+                $ponto->setId($_GET['IDPONTO']);
+                if ($_GET['LIKE']=='SETLIKE'){
+                    if ($ponto->Gostei()>0)
+                       echo '{"RETORNO":"LIKE COM SUCESSO"}';  
+                    else
+                        echo '{"RETORNO":"LIKE NAO SUCESSO"}';
+                }else{                 
+                    if ($ponto->naoGostei()>0)
+                       echo '{"RETORNO":"NAOLIKE COM SUCESSO"}';  
+                    else
+                        echo '{"RETORNO":"NAOLIKE NAO SUCESSO"}';
+                }              
+          }else
+            echo '{"RETORNO":"CHAMADA NÃO ENCONTRADA"}';         
     }else 
        echo '{"RETORNO":"CHAVE DE ACESSO INVALIDO"}';
     

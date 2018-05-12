@@ -7,8 +7,18 @@ class Pontos {
     private $latitude;
     private $longitude;
     private $idUsuario;
+    private $gostei;
     private $param;
     private $SQL;
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+        
     function getIdUsuario() {
         return $this->idUsuario;
     }
@@ -16,6 +26,14 @@ class Pontos {
     function setIdUsuario($idUsuario) {
         $this->idUsuario = $idUsuario;
     }   
+    
+    function getGostei() {
+        return $this->gostei;
+    }
+
+    function setGostei($gostei) {
+        $this->gostei = $gostei;
+    }
 
     public function __construct($ID = "") {
         $this->cnn = new conexao();
@@ -77,12 +95,15 @@ class Pontos {
     
     public function salvar() {
         if ($this->id == '-1'){           
-            $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude,idUsuarioDTO) VALUES('-1','$this->descricao','$this->latitude','$this->longitude',$this->idUsuario)";
+            $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude,idUsuarioDTO,gostei) VALUES('-1','$this->descricao','$this->latitude','$this->longitude',$this->idUsuario, 0)";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
-            $result->execute();            
+            $result->execute(); 
+            $this->SQL ="INSERT INTO Ranking(idUsuario, pontuacao) VALUES($this->idUsuario,1)";
+            $result = $this->cnn->Conexao()->prepare($this->SQL);
+            $result->execute();             
         }else{
-            $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude', idUsuarioDTO=$this->idUsuario WHERE ID='$this->id'";
+            $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude', idUsuarioDTO=$this->idUsuario,gostei=0 WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
@@ -106,5 +127,19 @@ class Pontos {
             return true;
         else        
              return false;        
+    }
+    public function gostei(){
+         $this->SQL = "UPDATE  Pontos SET gostei= gostei + 1  WHERE ID='$this->id'";
+            //echo $this->SQL;
+            $result = $this->cnn->Conexao()->prepare($this->SQL);
+            $result->execute();              
+            return $result->rowCount();    
+    }
+     public function naoGostei(){
+         $this->SQL = "UPDATE  Pontos SET gostei= gostei - 1  WHERE ID='$this->id'";
+            //echo $this->SQL;
+            $result = $this->cnn->Conexao()->prepare($this->SQL);
+            $result->execute();              
+            return $result->rowCount();    
     }
 }
