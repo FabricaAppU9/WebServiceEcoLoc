@@ -4,6 +4,7 @@ include_once 'conexao.class.php';
 class TipoMaterial {
     private $id;
     private $descricao;
+    private $param;
     
     function getId() {
         return $this->id;
