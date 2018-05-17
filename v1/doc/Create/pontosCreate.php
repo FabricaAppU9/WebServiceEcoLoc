@@ -15,6 +15,8 @@
         <input type="text" name="LONGETUDE" value="" placeholder="">
         <label>idUsuarioDTO:</label>
         <input type="text" name="IDUSUARIODTO" value="" placeholder="">
+        <label>IDs tipo material:</label>
+        <input type="text" name="IDTIPOMATERIAL" value="" placeholder="1,2,3">
         <input type='submit' name='btnSalvar' value='Gravar Ponto'></>
     </form>
     </div>
@@ -29,6 +31,7 @@
                 $url = $url . "&LATITUDE=" . $_POST["LATITUDE"]; 
                 $url = $url . "&LONGETUDE=". $_POST["LONGETUDE"];
                 $url = $url . "&IDUSUARIODTO=". $_POST["IDUSUARIODTO"];    
+                $url = $url . "&IDTIPOMATERIAL=". $_POST["IDTIPOMATERIAL"];    
                 $path = new EndPoint();
                 $url2= $path->getEndPoint()."ws_app/v1/ponto.php?".str_replace(' ','+',$url);
                 echo "     EXEMPO DE LINK PARA REQUISIÇÃO <br>";

@@ -8,10 +8,19 @@ class Pontos {
     private $longitude;
     private $idUsuario;
     private $gostei;
+    private $lstIDTipoMaterial;
     private $param;
     private $SQL;
     
-    function getId() {
+    function getLstIDTipoMaterial() {
+        return $this->lstIDTipoMaterial;
+    }
+
+    function setLstIDTipoMaterial($lstIDTipoMaterial) {
+        $this->lstIDTipoMaterial = $lstIDTipoMaterial;
+    }
+
+        function getId() {
         return $this->id;
     }
 
@@ -94,21 +103,34 @@ class Pontos {
     }
     
     public function salvar() {
+        $id_res= 0;
         if ($this->id == '-1'){           
             $this->SQL = "INSERT INTO Pontos(id,descricao,latitude,longitude,idUsuarioDTO,gostei) VALUES('-1','$this->descricao','$this->latitude','$this->longitude',$this->idUsuario, 0)";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute(); 
+             $id_res = $this->getIDPonto();
+            //GRAVANDO O RANKING
             $this->SQL ="INSERT INTO Ranking(idUsuario, pontuacao) VALUES($this->idUsuario,1)";
             $result = $this->cnn->Conexao()->prepare($this->SQL);
-            $result->execute();             
+            $result->execute();       
+             
+            //GRAVANDO TIPO MATERIAL
+            $id = explode(',',$this->lstIDTipoMaterial);
+            //print_r($id);
+            for ($index = 0; $index < count($id); $index++) {                
+                $this->SQL ="INSERT INTO pontosTipoMaterial(idPonto, idTipoMaterial) VALUES( $id_res,$id[$index])";
+            $result = $this->cnn->Conexao()->prepare($this->SQL);
+            $result->execute();  
+            }
+             
         }else{
             $this->SQL = "UPDATE  Pontos SET descricao = '$this->descricao', latitude='$this->longitude', longitude='$this->latitude', idUsuarioDTO=$this->idUsuario,gostei=0 WHERE ID='$this->id'";
             //echo $this->SQL;
             $result = $this->cnn->Conexao()->prepare($this->SQL);
             $result->execute();
         }        
-            return $result->rowCount();
+            return $id_res;
     }
     public function getIDPonto(){
         $result = $this->cnn->Conexao()->prepare("SELECT ID FROM Pontos  ORDER BY id DESC LIMIT 1");

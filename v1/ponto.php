@@ -9,6 +9,7 @@ if (isset($_GET['CHAVE'])){
                 $ponto->setLatitude($_GET['LATITUDE']);
                 $ponto->setLongitude($_GET['LONGETUDE']);
                 $ponto->setIdUsuario($_GET['IDUSUARIODTO']);
+                $ponto->setLstIDTipoMaterial($_GET['IDTIPOMATERIAL']);
                 if ($ponto->salvar()){
                     echo '{"RETORNO":"SUCESSO", "CODIGO":"'.$ponto->getIDPonto().'"}';
                 }else{
